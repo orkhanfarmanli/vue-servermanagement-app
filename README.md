@@ -1,6 +1,6 @@
-# vue-cli
+# Vue Server Management
 
-> A Vue.js project
+> A Vue.js project for managing servers
 
 ## Build Setup
 

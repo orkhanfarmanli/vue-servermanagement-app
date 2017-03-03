@@ -1,14 +1,17 @@
 <template>
 <div>
 	<div class="row">
-		<server-header></server-header>
+		<server-header :offline="offlineServers" :online="onlineServers"></server-header>
 	</div>
 	<hr>
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
 			<ul class="list-group">
 				<li v-for="server in servers" class="list-group-item">
-					{{ server.name }}
+					<a class="pull-left">
+						<button class="btn" :class="server.status ? 'btn-success' : 'btn-danger'"></button>
+					</a>
+					&nbsp; {{ server.name }}
 					<a class="pull-right" @click="changeServerStatus(server)">
 						<span class="btn btn-default badge">Switch State</span>
 					</a>
@@ -24,7 +27,7 @@
 	</div>
 	<hr>
 	<div class="row">
-		<server-footer :offline="offlineServers" :online="onlineServers"></server-footer>
+		<server-footer :logs="serverLog"></server-footer>
 	</div>
 </div>
 </template>
@@ -33,6 +36,13 @@
 	import ServerHeader from "../Shared/Header.vue";
 	import ServerFooter from "../Shared/Footer.vue";
 	export default {
+
+		components: {
+			"server-details": ServerDetails,
+			"server-header": ServerHeader,
+			"server-footer": ServerFooter
+		},
+
 		data(){
 			return {
 				servers: [
@@ -73,7 +83,8 @@
 						}
 					}
 				],
-				currentServer: ''
+				currentServer: '',
+				serverLog: []
 			}
 		},
 
@@ -81,12 +92,15 @@
 			changeServerStatus(server){
 				server.status = !server.status;
 				this.showServer(server);
+				this.logAction(server);
 			},
 			showServer(server){
 				this.currentServer = server;
+			},
+			logAction(server){
+				this.serverLog.push("<b>"+server.name+"</b>" + " turned " + (server.status ? "on" : "off"));
 			}
 		},
-
 
 		computed: {
 			onlineServers: function(){
@@ -101,12 +115,7 @@
 				});
 				return offlines.length;
 			}
-		},
-
-		components: {
-			"server-details": ServerDetails,
-			"server-header": ServerHeader,
-			"server-footer": ServerFooter
 		}
+
 	}
 </script>
