@@ -47,7 +47,7 @@
 			return {
 				servers: [
 					{
-						name: "Zakirin serveri",
+						name: "Centos 7",
 						status: true,
 						specs: {
 							cpu: "8 core",
@@ -56,7 +56,7 @@
 						}
 					},
 					{
-						name: "Kamilin Serveri",
+						name: "Ubuntu 16.04",
 						status: false,
 						specs: {
 							cpu: "12 core",
@@ -65,7 +65,7 @@
 						}
 					},
 					{
-						name: "Amilin Serveri",
+						name: "Rhel 7",
 						status: true,
 						specs: {
 							cpu: "2 core",
@@ -74,7 +74,7 @@
 						}
 					},
 					{
-						name: "Akifin Serveri",
+						name: "Ubuntu 14.04",
 						status: true,
 						specs: {
 							cpu: "28 core",
