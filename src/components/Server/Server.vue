@@ -9,7 +9,7 @@
 			<ul class="list-group">
 				<li v-for="server in servers" class="list-group-item">
 					<a class="pull-left">
-						<button class="btn" :class="server.status ? 'btn-success' : 'btn-danger'"></button>
+						<i :style="{ color: server.status ? '#00c853' : '#d50000' }" class="fa fa-linux" aria-hidden="true"></i>
 					</a>
 					&nbsp; {{ server.name }}
 					<a class="pull-right" @click="changeServerStatus(server)">
